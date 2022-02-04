@@ -8,6 +8,9 @@ from open_dictionary.server.models import base
 
 __all__ = (
     "UserEdit",
+    "EntryEdit",
+    "DictionaryEdit",
+    "ServerEdit"
 )
 
 
