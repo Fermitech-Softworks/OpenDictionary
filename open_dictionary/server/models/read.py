@@ -3,7 +3,12 @@ from uuid import UUID
 
 from open_dictionary.server.models import edit
 
-__all__ = ()
+__all__ = (
+    "UserRead",
+    "EntryRead",
+    "DictionaryRead",
+    "ServerRead"
+)
 
 
 class UserRead(edit.UserEdit):
@@ -40,7 +45,7 @@ class EntryRead(edit.EntryEdit):
 
 class DictionaryRead(edit.DictionaryEdit):
     """
-    **Read** model for :class:`.database.tables.Entry`.
+    **Read** model for :class:`.database.tables.Dictionary`.
     """
 
     id: UUID
@@ -56,7 +61,7 @@ class DictionaryRead(edit.DictionaryEdit):
 
 class ServerRead(edit.ServerEdit):
     """
-    **Read** model for :class:`.database.tables.Entry`.
+    **Read** model for :class:`.database.tables.Server`.
     """
 
     id: UUID
