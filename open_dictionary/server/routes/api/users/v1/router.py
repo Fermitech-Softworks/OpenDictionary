@@ -18,5 +18,12 @@ router = fastapi.routing.APIRouter(
 
 
 @router.get("/self", dependencies=[Depends(auth.implicit_scheme)], response_model=models.full.UserFull)
-def get_secure(current_user: tables.User = fastapi.Depends(deps.dep_user)):
+def read_self(current_user: tables.User = fastapi.Depends(deps.dep_user)):
+    return current_user
+
+
+@router.put("/self", dependencies=[Depends(auth.implicit_scheme)], response_model=models.full.UserFull)
+def edit_self(new_user: models.edit.UserEdit, current_user: tables.User = fastapi.Depends(deps.dep_user),
+              session: Session = fastapi.Depends(deps.dep_session)):
+    crud.quick_update(session, current_user, new_user)
     return current_user

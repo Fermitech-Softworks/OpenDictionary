@@ -36,8 +36,8 @@ class Entry(Base):
     definition = Column(String, nullable=False)
     examples = Column(String)
 
-    author_id = Column(UUID, ForeignKey("users.id"), nullable=False)
-    dictionary_id = Column(UUID, ForeignKey("dictionaries.id"), nullable=False)
+    author_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
+    dictionary_id = Column(UUID(as_uuid=True), ForeignKey("dictionaries.id"), nullable=False)
     author = relationship("User", back_populates="entries")
     dictionary = relationship("Dictionary", back_populates="entries")
 
@@ -61,5 +61,5 @@ class Server(Base):
     logo_uri = Column(String)
     custom_colors = Column(JSON)
 
-    admin_id = Column(UUID, ForeignKey("users.id"))
+    admin_id = Column(UUID(as_uuid=True), ForeignKey("users.id"))
     admin = relationship("User", back_populates="admin_of")

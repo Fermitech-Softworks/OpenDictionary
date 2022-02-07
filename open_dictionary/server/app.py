@@ -1,11 +1,7 @@
-import os
 import pathlib
-
 import fastapi
 import pkg_resources
 import sqlalchemy.exc
-from fastapi_auth0 import Auth0
-
 from open_dictionary.server.errors import ApiException
 from open_dictionary.server.handlers import handle_api_error, handle_sqlalchemy_not_found, \
     handle_sqlalchemy_multiple_results, handle_generic_error

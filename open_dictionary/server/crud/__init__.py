@@ -36,6 +36,7 @@ def quick_retrieve(session: Session, table: t.Type[DatabaseObject], **filters) -
     """
     Query the database for the object satisfying the specified filters.
 
+
     :param session: The session to use.
     :param table: The table to query.
     :param filters: The filters to use in the query.

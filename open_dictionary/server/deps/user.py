@@ -1,3 +1,4 @@
+import json
 from uuid import UUID
 
 import fastapi
@@ -6,7 +7,7 @@ from fastapi_auth0 import Auth0User
 from open_dictionary.database import tables, engine
 from open_dictionary.server import crud
 from open_dictionary.server.deps.database import dep_session
-from open_dictionary.server.errors import InvalidCredentials
+from open_dictionary.server.errors import InvalidCredentials, ResourceNotFound
 from open_dictionary.server.authentication import auth
 
 __all__ = (
@@ -22,9 +23,28 @@ def dep_user(
         email: str = user.email
         if email is None:
             raise InvalidCredentials
-    except Exception:
+    except Exception as e:
         raise InvalidCredentials
-    user_db = crud.quick_retrieve(session, tables.User, email=user.email)
-    if not user_db:
-        crud.quick_create(session, tables.User(username=user.email, email=user.email))
-    return user_db
+    try:
+        user_db = crud.quick_retrieve(session, tables.User, email=user.email)
+        return user_db
+    except ResourceNotFound:
+        first = False
+        try:
+            crud.quick_retrieve(session, tables.User)
+        except ResourceNotFound:
+            first = True
+        user_db = tables.User(username=user.email, email=user.email)
+        crud.quick_create(session, user_db)
+        if first:
+            server = session.query(tables.Server).first()
+            if not server:
+                crud.quick_create(session, tables.Server(name="Unconfigured OpenDictionary Server",
+                                                         motd="As an administrator, please configure me.",
+                                                         logo_uri="", custom_colors=json.dumps({}),
+                                                         admin_id=user_db.id))
+            else:
+                server.admin_id = user_db.id
+                session.commit()
+                session.refresh(server)
+        return user_db

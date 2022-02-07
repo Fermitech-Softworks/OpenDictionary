@@ -20,15 +20,11 @@ class UserEdit(base.ApiORMModel):
     """
 
     username: str
-    email: str
-    password: str
 
     class Config(base.ApiORMModel.Config):
         schema_extra = {
             "example": {
                 "username": "Nemesis",
-                "email": "name@domain.com",
-                "password": "password"
             },
         }
 
