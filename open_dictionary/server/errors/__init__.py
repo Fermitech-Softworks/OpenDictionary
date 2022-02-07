@@ -6,6 +6,7 @@ __all__ = (
     "ApiException",
     "MissingAuthHeader",
     "InvalidAuthHeader",
+    "InvalidCredentials",
     "WrongAuthHeader",
     "ResourceNotFound",
     "MultipleResultsFound",

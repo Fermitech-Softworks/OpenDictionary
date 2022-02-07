@@ -1,14 +1,13 @@
 from uuid import UUID
 
 import fastapi
-from jose import jwt, JWTError
-
+from fastapi import Security
+from fastapi_auth0 import Auth0User
 from open_dictionary.database import tables, engine
 from open_dictionary.server import crud
 from open_dictionary.server.deps.database import dep_session
-from open_dictionary.server.authentication import oauth2_scheme, SECRET_KEY, ALGORITHM, TokenData
 from open_dictionary.server.errors import InvalidCredentials
-from open_dictionary.server.crud import quick_retrieve
+from open_dictionary.server.authentication import auth
 
 __all__ = (
     "dep_user",
@@ -17,16 +16,15 @@ __all__ = (
 
 def dep_user(
         session: engine.Session = fastapi.Depends(dep_session),
-        token: str = fastapi.Depends(oauth2_scheme)
+        user: Auth0User = Security(auth.get_user)
 ):
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str = payload.get("sub")
+        email: str = user.email
         if email is None:
             raise InvalidCredentials
-    except JWTError:
+    except Exception:
         raise InvalidCredentials
-    user = quick_retrieve(session, tables.User, email=email)
-    if user is None:
-        raise InvalidCredentials
-    return user
+    user_db = crud.quick_retrieve(session, tables.User, email=user.email)
+    if not user_db:
+        crud.quick_create(session, tables.User(username=user.email, email=user.email))
+    return user_db
