@@ -42,6 +42,12 @@ class InvalidAuthHeader(ApiException):
     REASON = "The provided Authorization header is invalid."
 
 
+class InvalidCredentials(ApiException):
+    STATUS_CODE = 401
+    ERROR_CODE = "INVALID_CREDENTIALS"
+    REASON = "The provided credentials do not match up with any user in the database."
+
+
 class WrongAuthHeader(ApiException):
     STATUS_CODE = 401
     ERROR_CODE = "WRONG_AUTH_HEADER"
