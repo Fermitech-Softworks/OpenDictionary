@@ -61,8 +61,8 @@ class DictionaryEdit(base.ApiORMModel):
     class Config(base.ApiORMModel.Config):
         schema_extra = {
             "example": {
-                "term": "Personal Dictionary",
-                "definition": "Emìglian",
+                "name": "Personal Dictionary",
+                "language": "Emìglian",
             },
         }
 
