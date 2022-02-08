@@ -48,3 +48,11 @@ def dep_user(
                 session.commit()
                 session.refresh(server)
         return user_db
+
+
+def dep_admin(
+        user: tables.User = fastapi.Depends(dep_user)
+):
+    if not user.admin_of:
+        raise InvalidCredentials
+    return user
