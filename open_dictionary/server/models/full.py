@@ -28,7 +28,7 @@ class DictionaryFull(read.DictionaryRead):
     **Full** model for :class:`.database.tables.Dictionary`.
     """
 
-    entries: typing.Optional[read.EntryRead]
+    entries: typing.Optional[typing.List[read.EntryRead]]
 
 
 class ServerFull(read.ServerRead):
