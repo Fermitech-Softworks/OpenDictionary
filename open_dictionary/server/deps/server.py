@@ -9,7 +9,7 @@ import fastapi
 
 def dep_server(session: engine.Session = fastapi.Depends(dep_session)):
     try:
-        server = crud.quick_retrieve(session, tables.Server, raise_exceptions=False)
+        server = crud.quick_retrieve(session, tables.Server)
     except ResourceNotFound:
         server = crud.quick_create(session, tables.Server(name="Unconfigured OpenDictionary Server",
                                                           motd="As an administrator, please configure me.",

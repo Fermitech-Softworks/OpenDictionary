@@ -12,6 +12,7 @@ from open_dictionary.server.authentication import auth
 
 __all__ = (
     "dep_user",
+    "dep_admin"
 )
 
 
