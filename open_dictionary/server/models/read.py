@@ -2,6 +2,7 @@ from datetime import datetime
 from uuid import UUID
 
 from open_dictionary.server.models import edit
+from open_dictionary.server.models import base
 
 __all__ = (
     "UserRead",
@@ -11,12 +12,14 @@ __all__ = (
 )
 
 
-class UserRead(edit.UserEdit):
+class UserRead(base.ApiORMModel):
     """
     **Read** model for :class:`.database.tables.User`.
     """
 
     id: UUID
+    username: str
+    email: str
 
     class Config(edit.UserEdit.Config):
         schema_extra = {
