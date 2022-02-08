@@ -76,13 +76,3 @@ class ServerEdit(base.ApiORMModel):
     motd: str
     logo_uri: t.Optional[str]
     custom_colors: t.Optional[str]
-
-    class Config(base.ApiORMModel.Config):
-        schema_extra = {
-            "example": {
-                "term": "Server custom name",
-                "motd": "This is a custom server.",
-                "logo_uri": "https://c.tenor.com/yheo1GGu3FwAAAAd/rick-roll-rick-ashley.gif",
-                "custom_colors": "{...}",
-            },
-        }

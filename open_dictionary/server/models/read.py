@@ -70,11 +70,3 @@ class ServerRead(edit.ServerEdit):
     """
 
     id: UUID
-
-    class Config(edit.ServerEdit.Config):
-        schema_extra = {
-            "example": {
-                **edit.ServerEdit.Config.schema_extra["example"],
-                "id": "70fd1bf3-69dd-4cde-9d41-42368221849f",
-            },
-        }

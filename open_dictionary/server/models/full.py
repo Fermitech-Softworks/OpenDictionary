@@ -1,7 +1,7 @@
 import typing
 import typing as t
 
-from open_dictionary.server.models import read
+from open_dictionary.server.models import read, base
 
 __all__ = ()
 
@@ -37,3 +37,14 @@ class ServerFull(read.ServerRead):
     """
 
     admin: read.UserRead
+
+
+class Planetarium(base.ApiModel):
+    """
+    **Planetarium-compliant** model for :class:`.database.tables.Server`.
+    """
+
+    version: str
+    type: str
+    oauth_public: str
+    server: ServerFull
