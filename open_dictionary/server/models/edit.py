@@ -37,7 +37,6 @@ class EntryEdit(base.ApiORMModel):
     term: str
     definition: str
     examples: str
-    author_id: UUID
     dictionary_id: UUID
 
     class Config(base.ApiORMModel.Config):
@@ -46,7 +45,6 @@ class EntryEdit(base.ApiORMModel):
                 "term": "Supercazzola",
                 "definition": "A complex phrase that means nothing.",
                 "examples": "Tarapia Tapioco, is the Supercazzola ready or not? If so, send it to posterdati.",
-                "author_id": "a0da6178-d1d3-48ef-984c-7bb8a75c6d3b",
                 "dictionary_id": "b0rc6178-d1d3-48ef-984c-7bb8a75c6d3b"
             },
         }

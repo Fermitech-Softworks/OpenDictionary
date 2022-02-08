@@ -6,6 +6,9 @@ from open_dictionary.server.deps.database import dep_session
 from open_dictionary.server.errors import ResourceNotFound
 import fastapi
 
+__all__ = (
+    "dep_server",
+)
 
 def dep_server(session: engine.Session = fastapi.Depends(dep_session)):
     try:

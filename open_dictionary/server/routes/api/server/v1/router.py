@@ -18,12 +18,12 @@ router = fastapi.routing.APIRouter(
 
 
 @router.get("/", response_model=models.full.ServerFull)
-def read_self(server=fastapi.Depends(deps.dep_server)):
+async def read_self(server=fastapi.Depends(deps.dep_server)):
     return server
 
 
 @router.put("/", dependencies=[Depends(auth.implicit_scheme)], response_model=models.full.ServerFull)
-def edit_self(new_server: models.edit.ServerEdit, current_user: tables.User = fastapi.Depends(deps.dep_admin),
-              session: Session = fastapi.Depends(deps.dep_session), server=fastapi.Depends(deps.dep_server)):
+async def edit_self(new_server: models.edit.ServerEdit, current_user: tables.User = fastapi.Depends(deps.dep_admin),
+                    session: Session = fastapi.Depends(deps.dep_session), server=fastapi.Depends(deps.dep_server)):
     crud.quick_update(session, server, new_server)
     return server

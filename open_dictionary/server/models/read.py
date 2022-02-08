@@ -36,12 +36,14 @@ class EntryRead(edit.EntryEdit):
     """
 
     id: UUID
+    author_id: UUID
 
     class Config(edit.EntryEdit.Config):
         schema_extra = {
             "example": {
                 **edit.EntryEdit.Config.schema_extra["example"],
                 "id": "70fd1bf3-69dd-4cde-9d41-42368221849f",
+                "author_id": "a0da6178-d1d3-48ef-984c-7bb8a75c6d3b",
             },
         }
 
