@@ -1,11 +1,9 @@
-import json
 from uuid import UUID
-
 from open_dictionary.database import tables, engine
 from open_dictionary.server import crud
 from open_dictionary.server.deps.database import dep_session
 from open_dictionary.server.deps.user import dep_user
-from open_dictionary.server.errors import ResourceNotFound, InvalidCredentials
+from open_dictionary.server.errors import InvalidCredentials
 import fastapi
 
 __all__ = (

@@ -1,17 +1,12 @@
-from uuid import UUID
-
 from open_dictionary.server import models
-import bcrypt
 import fastapi
-from fastapi import FastAPI, Depends, Security
-from fastapi_auth0 import Auth0, Auth0User
+from fastapi import Depends
 from open_dictionary.server import crud
 from open_dictionary.server import deps
 from open_dictionary.database import tables
 from open_dictionary.database.engine import Session
 from fastapi_pagination import Page, paginate
 from open_dictionary.server.authentication import auth
-from open_dictionary.server.utilities import search
 from open_dictionary.server.responses.raw import NO_CONTENT
 from sqlalchemy import desc
 from typing import List

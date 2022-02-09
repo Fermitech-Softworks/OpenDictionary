@@ -6,8 +6,6 @@ import uuid
 
 import pydantic
 
-import open_dictionary.database.tables
-
 __all__ = (
     "ApiModel",
     "ApiORMModel",

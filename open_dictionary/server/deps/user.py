@@ -1,6 +1,4 @@
 import json
-from uuid import UUID
-
 import fastapi
 from fastapi import Security
 from fastapi_auth0 import Auth0User

@@ -1,10 +1,6 @@
-import os
-
 from open_dictionary.server import models
-import bcrypt
 import fastapi
-from fastapi import FastAPI, Depends, Security
-from fastapi_auth0 import Auth0, Auth0User
+from fastapi import Depends
 from open_dictionary.server import crud
 from open_dictionary.server import deps
 from open_dictionary.database.engine import Session

@@ -2,12 +2,9 @@
 This module contains some useful shortcuts for common database interactions.
 """
 
-# TODO: improve this
-
 import typing as t
 
 import pydantic
-from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import select
 

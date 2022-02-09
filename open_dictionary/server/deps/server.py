@@ -1,5 +1,4 @@
 import json
-
 from open_dictionary.database import tables, engine
 from open_dictionary.server import crud
 from open_dictionary.server.deps.database import dep_session
@@ -9,6 +8,7 @@ import fastapi
 __all__ = (
     "dep_server",
 )
+
 
 def dep_server(session: engine.Session = fastapi.Depends(dep_session)):
     try:

@@ -1,6 +1,4 @@
 import typing
-import typing as t
-
 from open_dictionary.server.models import read, base
 
 __all__ = ()
